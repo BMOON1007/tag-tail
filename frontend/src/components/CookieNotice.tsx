@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { extraPagesEnabled } from "@/lib/site";
 
 const STORAGE_KEY = "tag_tails_cookie_notice";
 
@@ -19,11 +20,17 @@ export function CookieNotice() {
   return (
     <div className="cookie-notice" role="dialog" aria-label="Cookie notice">
       <p>
-        We use essential cookies to keep you signed in and run Tag-Tails. See our{" "}
-        <Link className="textlink" href="/legal/cookies">
-          Cookie Policy
-        </Link>
-        .
+        We use essential cookies to keep you signed in and run Tag-Tails.
+        {extraPagesEnabled ? (
+          <>
+            {" "}
+            See our{" "}
+            <Link className="textlink" href="/legal/cookies">
+              Cookie Policy
+            </Link>
+            .
+          </>
+        ) : null}
       </p>
       <button
         className="button small"

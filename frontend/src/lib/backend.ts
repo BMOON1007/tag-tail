@@ -48,7 +48,7 @@ export async function clearAuthCookie() {
   store.delete(AUTH_COOKIE);
 }
 
-export async function authHeader() {
+export async function authHeader(): Promise<Record<string, string>> {
   const token = (await cookies()).get(AUTH_COOKIE)?.value;
   return token ? { Authorization: `Bearer ${token}` } : {};
 }
